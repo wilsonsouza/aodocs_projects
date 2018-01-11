@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+<!-- The CSS package above applies Google styling to buttons and other elements. -->
+<style>
+.header_description
+{
+  font-family: sans serif;
+  font-size: 16px;
+  text-align: "center";
+}
+</style>
+<!-- -->
+<form>
+  <div>
+    <div class="block_1" align="center">
+      <p>
+         <label class="header_description">Select options below...</label>
+      </p>   
+    </div>
+    
+    <div class="block_2" align="center">
+      <p>
+         <input type="button" class="fill-spreadsheet" value="Header" onclick="google.script.run.LoadMySpreadsheet()"/>
+         <input type="button" class="fill-field" value="Field" onclick="google.script.run.FillCurrentActiveFieldSelected()"/>
+      </p>   
+    </div>
+  </div>
+</form>

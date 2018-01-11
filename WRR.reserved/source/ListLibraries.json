@@ -1,0 +1,1039 @@
+{
+ "kind": "aodocs#libraryList",
+ "libraries": [
+  {
+   "kind": "aodocs#library",
+   "libraryId": "00000141122271A10F3AB4CE6AF066D7",
+   "name": "Pastas compartilhadas",
+   "homeUrl": "pastas-compartilhadas",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library Shared Folders Template.</p>\n<p>You can put here all the information that your users will want to know about the Library:</p>\n<ul>\n<li>A summary of the Library's content</li>\n<li>A description of each of the navigation links on the left hand side of this page</li>\n<li>Contact information for the Library administrators and for your company's internal technical support</li>\n</ul>\n<p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_00000141122271A10F3AB4CE6AF066D7\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlS29MaDZXLUdXQlE",
+   "trashResourceId": "0B-KbkyLUCrxlczNjUHkzMlBGZXc",
+   "beta": false,
+   "attachmentMode": "GOOGLE_DRIVE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Document",
+      "value": "0000014112229061EEBBFD0517AF05CF"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tags",
+      "value": "a0000014112229B821042E25A0F85DB44"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "00000141122271A10F3AB4CE6AF066D7",
+    "id": "a0000014112229B59182EEF8BE25C16CC",
+    "name": "Folder",
+    "dynamicValues": false,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxldTd4UGFtVkxIOE0",
+    "folderVisibility": "PUBLICLY_EDITABLE"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "0000014112229E98117A63186FE5211F"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList",
+    "workflows": [
+     {
+      "kind": "aodocs#workflow",
+      "id": "00000142044ECDEE29C7D25B41539D80",
+      "name": "Aprovação de Proposta",
+      "classId": "0000014112229061EEBBFD0517AF05CF"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "000001411223AD57E4DD11598BE4EC5E",
+   "name": "Catálogo de Produtos",
+   "homeUrl": "cat-logo-de-produtos",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library AODocs.</p>\n<p>You can put here all the information that your users will want to know about the Library:</p>\n<ul>\n<li>A summary of the Library's content</li>\n<li>A description of each of the navigation links on the left hand side of this page</li>\n<li>Contact information for the Library administrators and for your company's internal technical support</li>\n</ul>\n<p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_000001411223AD57E4DD11598BE4EC5E\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlVk1GYTROWEtGdHM",
+   "trashResourceId": "0B-KbkyLUCrxlYVZROUc5THdSTzg",
+   "beta": false,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Produto",
+      "value": "0000014136612326E9BB048FFEE069B6"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Fabricante",
+      "value": "0000014136612CD700000000D08CF356"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tipo de produto",
+      "value": "000001413661AC9A29EBC9D04BFE59A5"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Cor",
+      "value": "000001413662162000000000951C37FA"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tipo de base",
+      "value": "000001413662A3F9AD8AF2EC6E226625"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "000001411223AD57E4DD11598BE4EC5E",
+    "id": "000001468B60A565FEFDBA23EA0AB5D8",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlMmJCamVRR3FDd0U",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "Todos os produtos",
+      "value": "0000014136612527294A840C6DA2B5A3"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Fâmpada elétrica",
+      "value": "000001413691E5ADEFD6734A2219C982"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Lanterna",
+      "value": "0000014136940CFB32C5112EE09FEBB9"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "0000014136A5E1BB29DB1FE129EBC4FD",
+   "name": "Fornecedor",
+   "homeUrl": "fornecedor",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p style=\"text-align: center;\"><span style=\"font-size: large;font-family: arial , helvetica , sans-serif;\"><strong>Bem-vindo &agrave; biblioteca \"Fornecedor\"</strong></span></p>\n<p><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Esta biblioteca permite validar facturas de fornecedores pelos gerentes de projeto, antes de fazer o pagamento.</span></p>\n<p><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Neste exemplo, temos:</span></p>\n<ul>\n<li><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Duas classes de documentos (fatura e fornecedor)</span></li>\n<li><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Uma rela&ccedil;&atilde;o entre duas classes</span></li>\n<li><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Um endere&ccedil;o de e-mail para enviar as faturas para transferir a base de fornecedores</span></li>\n<li><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Fluxo de trabalho de valida&ccedil;&atilde;o</span></li>\n</ul>\n<p><span style=\"font-family: arial , helvetica , sans-serif;\"><img src=\"imageView?id=000001413CF9002DC65A27046EB1BB94&libraryId=0000014136A5E1BB29DB1FE129EBC4FD\" width=\"614\" height=\"909\" alt=\"Fornecedor - New Page.png\" title=\"Fornecedor - New Page.png\" style=\"display: block;margin-left: auto;margin-right: auto;\"></span><strong><span><br></span></strong></p>",
+   "resourceId": "0B-KbkyLUCrxlLXlxYk1Xb1pRQWc",
+   "trashResourceId": "0B-KbkyLUCrxldnp1YzNKMDZUYVE",
+   "beta": false,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Fatura",
+      "value": "0000014137129E0FAFE69172204C2105"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Fornecedor",
+      "value": "00000141371300FDE8A55C81708EDAD6"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Moeda",
+      "value": "00000141371854CA0000000001F7726F"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Projeto",
+      "value": "000001413786D07800000000CF79B3DC"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Taxa de IVA",
+      "value": "00000141378A859F00000000DC324418"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Pais",
+      "value": "000001413794FD683CB60FDB68C631B5"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "As condições de pagamento",
+      "value": "0000014137974AA630C7BDE860B3348B"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Departamento",
+      "value": "000001413797A65600000000C1E31D43"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "0000014136A5E1BB29DB1FE129EBC4FD",
+    "id": "000001468B60B93EBF47D09C208B17B5",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlcDc5OFVrOGlyQVU",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "Fatura",
+      "value": "0000014137129EACEAEFCA94682C80C7"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Fornecedor",
+      "value": "0000014137A20850D2E0332440A15816"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList",
+    "workflows": [
+     {
+      "kind": "aodocs#workflow",
+      "id": "0000014137A3CBE738DF506B09EE348E",
+      "name": "Aprovação da proposta",
+      "classId": "0000014137129E0FAFE69172204C2105"
+     }
+    ]
+   },
+   "relations": [
+    {
+     "kind": "aodocs#relation",
+     "id": "0000014137A06800CF2D43DB7E97D1C7",
+     "libraryId": "0000014136A5E1BB29DB1FE129EBC4FD",
+     "name": "Fatura - Fornecedor",
+     "fromId": "0000014137129E0FAFE69172204C2105",
+     "toId": "00000141371300FDE8A55C81708EDAD6",
+     "fromName": "Fatura",
+     "toName": "Fornecedor",
+     "fromSort": "_title",
+     "fromDescending": false,
+     "toSort": "_title",
+     "toDescending": false
+    }
+   ]
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "0000014136A61D2403FD42281F9E5269",
+   "name": "Aprovação da proposta",
+   "homeUrl": "aprovacao-da-proposta",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p style=\"text-align: center;\"><span style=\"font-size: large;\"><strong><span style=\"font-family: arial , helvetica , sans-serif;\">Bem-vindo &agrave; biblioteca \"Aprova&ccedil;&atilde;o da proposta\"</span></strong></span></p>\n<p style=\"text-align: left;\"><span style=\"font-size: large;\"><strong><span style=\"font-family: arial , helvetica , sans-serif;\"></span></strong></span><br><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Esta biblioteca permite de aprovar propostas comerciales e t&ecirc;m uma hist&oacute;ria das propostas enviadas por cliente, data, vendedor o produto</span></p>\n<p style=\"text-align: left;\"><span style=\"font-family: arial , helvetica , sans-serif;font-size: small;\">Voc&ecirc; pode ver o fluxo de trabalho abaixo ou clicando <a href=\"https://docs.google.com/a/altirnao.com/file/d/0B-WVle5XFWfQejNLcHhDZW5xUXM/edit\" target=\"_blank\">neste link</a>.</span></p>\n<p><span style=\"font-size: medium;\"><img src=\"imageView?id=0000014147287DCE0FD691EAFF672DE1&libraryId=0000014136A61D2403FD42281F9E5269\" width=\"1360\" height=\"2025\" alt=\"Workflow approval - New Page (1).png\" title=\"Workflow approval - New Page (1).png\" style=\"float: left;\"></span></p>\n<p></p>\n<p></p>\n<p></p>",
+   "resourceId": "0B-KbkyLUCrxlSDJyeWNlUktjMVk",
+   "trashResourceId": "0B-KbkyLUCrxlc0FOS2N4dHRiZE0",
+   "beta": false,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Proposta",
+      "value": "0000014138344E8A2B97331F24E5950B"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Produto",
+      "value": "0000014138345EA4E35F28EB1066E3E2"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Negócios",
+      "value": "0000014138384D00588E49B01065701C"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Cliente",
+      "value": "00000141383987C900000000C902447C"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Vendedor",
+      "value": "000001413B9D2165A72C99B618751C5A"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "0000014136A61D2403FD42281F9E5269",
+    "id": "000001468B60D0C50926A47F505BCB11",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlOTlmWUZjNUhxN00",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "Todas as propostas",
+      "value": "0000014138344F07B5C63D35C3516386"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Propostas enviadas",
+      "value": "000001413B99AAF6AE82B2A09B1BA749"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Propostas aceitas",
+      "value": "000001413B9A13904777A575075B6F29"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Propostas rejeitas",
+      "value": "000001413B9A62F29497A2821C1E1DCA"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList",
+    "workflows": [
+     {
+      "kind": "aodocs#workflow",
+      "id": "000001413B43BFB4EB42EBFD3C6E2678",
+      "name": "Aprovação da proposta",
+      "classId": "0000014138344E8A2B97331F24E5950B"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "000001417AC86B2AB50135B7B9259E3B",
+   "name": "File Server",
+   "homeUrl": "FileServer",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>Reposit&oacute;rio de Conteudo - Renato Lopes</p>\n<p>AoDocs</p>",
+   "resourceId": "0B-KbkyLUCrxlOW9JVEFEN2FKQjA",
+   "trashResourceId": "0B-KbkyLUCrxlZDBWTlhISTI2TE0",
+   "beta": false,
+   "attachmentMode": "GOOGLE_DRIVE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Document",
+      "value": "000001417AC876790E26AD939330706D"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tags",
+      "value": "a000001417AC87F5E2F459AFF89EEE4A2"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "000001417AC86B2AB50135B7B9259E3B",
+    "id": "a000001417AC87F51F440AD1A41366BD5",
+    "name": "Folder",
+    "dynamicValues": false,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlcWdpd3BJSVcxbUE",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "000001417AC881D8A00B87C35BAD1D78"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "000001420449D45F26FF70EF631884B0",
+   "name": "Renato",
+   "homeUrl": "renato",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library Renato.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_000001420449D45F26FF70EF631884B0\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlQklmM0QxNjJzYU0",
+   "trashResourceId": "0B-KbkyLUCrxlMldrWS1JWVBNLWM",
+   "beta": false,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList"
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList"
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "000001420449D45F26FF70EF631884B0",
+    "id": "000001468B60E7D8C6FA1E61FAD31140",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlY3RnUTg0akFSNkk",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList"
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "00000144D6BE7CACE4A5D6F7FF84117C",
+   "name": "Projetos",
+   "homeUrl": "projetos",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library Shared Folders Template.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_00000144D6BE7CACE4A5D6F7FF84117C\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlWGtjaUhlalpoMTA",
+   "trashResourceId": "0B-KbkyLUCrxlYmdvNzNILUpsQTA",
+   "beta": false,
+   "attachmentMode": "GOOGLE_DRIVE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Document",
+      "value": "00000144D6BEBA373E7418833E05AC6D"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tags",
+      "value": "a00000144D6BEA022B3B8E31AA7150DDC"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "00000144D6BE7CACE4A5D6F7FF84117C",
+    "id": "a00000144D6BE9F551608F8F563168C25",
+    "name": "Folder",
+    "dynamicValues": false,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlSURvbUp3U2RjYkk",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "00000144D6BEC082D784C0DFF6E436F4"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "00000144D6C24CB2AC2FA713D576912E",
+   "name": "Gerencia Erika",
+   "homeUrl": "gerencia-erika",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library Shared Folders Template.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_00000144D6C24CB2AC2FA713D576912E\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlUk1IRzF1WWZLdW8",
+   "trashResourceId": "0B-KbkyLUCrxlcktKM2UxUDhoaGM",
+   "beta": false,
+   "attachmentMode": "GOOGLE_DRIVE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Document",
+      "value": "00000144D6C2742D5A83EFDA9135A00F"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Tags",
+      "value": "a00000144D6C2630C181A02CD616E9218"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "00000144D6C24CB2AC2FA713D576912E",
+    "id": "a00000144D6C2627294396FE0E22AE17D",
+    "name": "Folder",
+    "dynamicValues": false,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlRUVGbjlaRy01Q3c",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "00000144D6C277E0FCE06DB93D61F3B8"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "00000144E61164503AB7AFEC4F1AD593",
+   "name": "DAT - Bug Tracking",
+   "homeUrl": "dat---bug-tracking",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library DAT - Bug Tracking.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_00000144E61164503AB7AFEC4F1AD593\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlaF94V1FSV0FSRlU",
+   "trashResourceId": "0B-KbkyLUCrxlaGVGcGFnODlfRTQ",
+   "beta": false,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "BUG",
+      "value": "00000144E6125738A1C3BA6C2B10D23F"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "IdFactory",
+      "value": "0000014522A4DBE9D2AC4D2071AD6A67"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Versões",
+      "value": "00000144E61A212C00000000944998CB"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Proprietários",
+      "value": "00000144E61B6042FD5755371F27AA73"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Prioridades",
+      "value": "0000014522CCE4E14CAE8EE672CF4E4D"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "00000144E61164503AB7AFEC4F1AD593",
+    "id": "00000144E6116C13A848323FFB8AEFEB",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlMVE4cWdiRmVraFU",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "00000144E61259A3DDEA48781821EB9F"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList",
+    "workflows": [
+     {
+      "kind": "aodocs#workflow",
+      "id": "00000144E61F5C8C8AD9A6150F64FCB8",
+      "name": "Workflow do BUG",
+      "classId": "00000144E6125738A1C3BA6C2B10D23F"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "OitNtfZ8EJfxeKdbQW",
+   "name": "Test library",
+   "homeUrl": "test-library",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library Test library.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_OitNtfZ8EJfxeKdbQW\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxla09JY0JrYTk2enc",
+   "trashResourceId": "0B-KbkyLUCrxlTnVYODR1M0NLSjg",
+   "beta": true,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Document Test",
+      "value": "Ok12Np13LXOYqluTl4"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Canetas",
+      "value": "OkBT1N405gwzO5ppps"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "URL Post - Dudinha",
+      "value": "OkeVJbD8llQMbkvKCG"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Teste",
+      "value": "OlVTzd80LiGyYrVYPW"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Celulares - Rafael",
+      "value": "OlzRbPRuCiaVu26Ql9"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Primeira etapa",
+      "value": "OmkuHuq4fq3V0NeiRx"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Coligada",
+      "value": "OmwYsQkvxL0xH5KHAB"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Contrato",
+      "value": "OmwZ5Cb7kdTJh4JGko"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Tipo de documento",
+      "value": "OmwZErHyNG7ZC4vLte"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "CPF",
+      "value": "OmwZLyI5pOGEqzlIqc"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "HTTPFetch",
+      "value": "OqgwJYc0hMkefnd9uk"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList",
+    "items": [
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Cores de Caneta",
+      "value": "OkBT6zV000000UxFTF"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Cor celular",
+      "value": "OlzS4uRxvcI9dBBXOI"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Dinamica",
+      "value": "OmklaLo000000rj5lJ"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Coligada",
+      "value": "OmkyYVW000001wYecE"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "Animails",
+      "value": "Ompcr6X2gKUn8y8ICA"
+     },
+     {
+      "kind": "aodocs#categoryId",
+      "name": "ListRelationNames",
+      "value": "OnPaRHj000001vdHtw"
+     }
+    ]
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "OitNtfZ8EJfxeKdbQW",
+    "id": "OitNuUQ4Hc2nSsTE4r",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlWTAtcnkyZUJPMGs",
+    "folderVisibility": "PUBLIC"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "Ok12Nqz9ux8wTFRL5Z"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "Todas as Cenetas",
+      "value": "OkBVHRrsjNjwhhzbGq"
+     },
+     {
+      "kind": "aodocs#viewId",
+      "name": "TODOS CEL",
+      "value": "Olzb41kx7SP8jHmiHS"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList",
+    "workflows": [
+     {
+      "kind": "aodocs#workflow",
+      "id": "Ok12cl9uygHPZIDYZH",
+      "name": "Workflow Test",
+      "classId": "Ok12Np13LXOYqluTl4"
+     },
+     {
+      "kind": "aodocs#workflow",
+      "id": "OkBXdlxyELz3uJjBwJ",
+      "name": "Aprovação de compra da caneta",
+      "classId": "OkBT1N405gwzO5ppps"
+     },
+     {
+      "kind": "aodocs#workflow",
+      "id": "OkeVad0AneaDZXiIp5",
+      "name": "URL Post - workflow - Dudinha",
+      "classId": "OkeVJbD8llQMbkvKCG"
+     },
+     {
+      "kind": "aodocs#workflow",
+      "id": "OlVUGOxwjjZKEBP0G7",
+      "name": "Teste",
+      "classId": "OlVTzd80LiGyYrVYPW"
+     },
+     {
+      "kind": "aodocs#workflow",
+      "id": "OlzSnqbuxnFSSYnSHE",
+      "name": "Celular Rafael",
+      "classId": "OlzRbPRuCiaVu26Ql9"
+     },
+     {
+      "kind": "aodocs#workflow",
+      "id": "OqgwZWc9Ets7l3bxs5",
+      "name": "HTTPFetch",
+      "classId": "OqgwJYc0hMkefnd9uk"
+     }
+    ]
+   },
+   "relations": [
+    {
+     "kind": "aodocs#relation",
+     "id": "Oml32my2BqdE4OOjYg",
+     "libraryId": "OitNtfZ8EJfxeKdbQW",
+     "name": "Documento por email",
+     "fromId": "OmkuHuq4fq3V0NeiRx",
+     "toId": "OlVTzd80LiGyYrVYPW",
+     "fromName": "Primeira etapa",
+     "toName": "Teste",
+     "fromDescending": false,
+     "toDescending": false
+    }
+   ]
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "OwY8DdAzktU1e6QPOR",
+   "name": "WRR - Recursos Humanos",
+   "homeUrl": "wrr---recursos-humanos",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library WRR - Recursos Humanos.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_OwY8DdAzktU1e6QPOR\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlM0Q4bzJkYWVrY0U",
+   "trashResourceId": "0B-KbkyLUCrxlbnBNU2FYX1FXTnM",
+   "beta": true,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Coligada",
+      "value": "OwYCaq9uFfQAQz7slo"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList"
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "OwY8DdAzktU1e6QPOR",
+    "id": "OwY8EJh9QN9tKria8R",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlbWtVdVhpSUpvTlk",
+    "folderVisibility": "PRIVATE"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "OwYCatNv6EvlPJ9Og9"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "OwY8Kpisz9LFU2xw0t",
+   "name": "WRR - Comum",
+   "homeUrl": "wrr---comum",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library WRR - Comum.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_OwY8Kpisz9LFU2xw0t\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlclJQLVJzd0ZuNlU",
+   "trashResourceId": "0B-KbkyLUCrxldHRWdU1ITndJRGs",
+   "beta": true,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Coligada",
+      "value": "OwY9Rtet005S4jixRP"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList"
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "OwY8Kpisz9LFU2xw0t",
+    "id": "OwY8KM66ctwlWj9szz",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlVkZTenA2dDlWOTQ",
+    "folderVisibility": "PRIVATE"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "OwY9Rvv1NHMARODtUE"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  },
+  {
+   "kind": "aodocs#library",
+   "libraryId": "OwY8Qd57asvk3wImtV",
+   "name": "WRR - Financeiro",
+   "homeUrl": "wrr---financeiro",
+   "daysBeforeDelete": 30,
+   "welcomeText": "<p>This section contains the home page description for your Library WRR - Financeiro.</p><p>You can put here all the information that your users will want to know about the Library:</p><ul><li>A summary of the Library's content</li><li>A description of each of the navigation links on the left hand side of this page</li><li>Contact information for the Library administrators and for your company's internal technical support</li></ul><p>You can customize this message in the <a href=\"editor.html#Menu_configlibrarySettings/LibraryId_OwY8Qd57asvk3wImtV\">Library Settings</a> page</p>",
+   "resourceId": "0B-KbkyLUCrxlLWdZd2RvSV9jUFk",
+   "trashResourceId": "0B-KbkyLUCrxlNGdHb3VoZVY3VUU",
+   "beta": true,
+   "attachmentMode": "COMPOSITE",
+   "permissionMode": "LOW_SECURITY_PRISON",
+   "defaultOnlyAdminCanDelete": false,
+   "currentUserRight": "ADMIN",
+   "documentTypes": {
+    "kind": "aodocs#classList",
+    "items": [
+     {
+      "kind": "aodocs#classId",
+      "name": "Coligada",
+      "value": "OwYC1jX3CrAZadrJaS"
+     },
+     {
+      "kind": "aodocs#classId",
+      "name": "Fornecedor",
+      "value": "OwcitDkxd3QZehCx3J"
+     }
+    ]
+   },
+   "categoryDefinitions": {
+    "kind": "aodocs#categoryList"
+   },
+   "folderDefinition": {
+    "kind": "aodocs#folderdefinition",
+    "libraryId": "OwY8Qd57asvk3wImtV",
+    "id": "OwY8RE4AtI71oI1FJQ",
+    "name": "Folder",
+    "dynamicValues": true,
+    "multiple": false,
+    "mandatory": false,
+    "hidden": false,
+    "folderId": "0B-KbkyLUCrxlSWpkY2NsSXNJLWs",
+    "folderVisibility": "PRIVATE"
+   },
+   "views": {
+    "kind": "aodocs#viewList",
+    "items": [
+     {
+      "kind": "aodocs#viewId",
+      "name": "All Documents",
+      "value": "OwYC1l4tyfCGJSJCmq"
+     }
+    ]
+   },
+   "wokflows": {
+    "kind": "aodocs#apiWorkflowList"
+   }
+  }
+ ],
+ "etag": "\"VTtdHyydxq3j0ZSyQYVJDdP3UhE/GI8beRfuFMs4iuxJUMn_3rlldJc\""
+}
+ 

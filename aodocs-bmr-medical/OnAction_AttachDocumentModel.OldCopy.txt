@@ -1,0 +1,160 @@
+/*
+*  Created by Wilson.Souza
+*  Copyright (c) 2014 Dedalus
+*  Supervised by Eduardo Bortoluzzi Jr
+*  Source created 7-24-2014
+*  Last update 7-25-2014
+*  Last update 9-17-2014 by wilson.souza -> fix problem when recuse document attachment again
+*/
+class URLEncoder 
+{
+   private String encode(String strData, String strReserved) 
+   {
+      StringBuffer pResult = new StringBuffer();
+      String strSpecialChars = " &+?/=%";
+
+      for (int i = 0; i < strData.length(); i++) 
+      {
+         char c = strData.charAt(i);
+
+         if (strSpecialChars.indexOf(c) >= 0) 
+         {
+            byte[] bytes = ("" + c).getBytes();
+            pResult.append("%");
+            
+            for (int j = 0; j < bytes.length; j++) 
+            {
+               if (bytes[j] < 16) 
+               {
+                  pResult.append("0");
+               }
+               pResult.append(Integer.toHexString(bytes[j]));
+            }
+         } 
+         else 
+         {
+            pResult.append(c);
+         }
+      }
+      return pResult.toString();
+   }
+}
+/*************************************************************************************************/
+class FormatParameters
+{
+   public final static String ID = "FileID=";
+   public final static String TITLE = "&AODocsDocumentTitle=";
+   public final static String KEY = "PLOJV6Yw2xmEyGiXml9YPvy3vNk99HHXXX7NjHWahE7wIeqrBtKoxOKcQEdFuN7";
+   public final static String KEYNAME = "&KeyID=";
+}
+/*************************************************************************************************/
+try
+{
+   final String URL = getParam("urlScript");
+   String strFileID = getParam("idOriginalFile");
+   
+   try
+   {
+      boolean bBreak = Boolean.parseBoolean(document.getField("DontAttachFileWhenRecused").toString());
+      /* document already attached*/
+      if(bBreak)
+         return;
+   }
+   catch(Exception e)
+   {
+      //dont make nothing
+      debug(e.getMessage());
+   }
+   /***/
+   Attachment pAtt = getDriveService().copyDocument(strFileID, Optional.absent(), Optional.absent());
+
+   //put file on attached
+   DocumentService pService = getDocumentService();
+   Document pDoc = pService.lockDocument(document);
+
+   // save on drive
+   pService.store(pDoc);
+   // attach file
+   pDoc.addAttachment(pAtt);
+
+   //call external script to change file name
+   URLEncoder pEncoder = new URLEncoder();
+   String strUrl = URL;
+   String strData = FormatParameters.ID + 
+                     pEncoder.encode(pAtt.getFileId(), "").toString() + 
+                     FormatParameters.TITLE + 
+                     pEncoder.encode(document.getTitle(), "").toString() +
+                     FormatParameters.KEYNAME +
+                     pEncoder.encode(FormatParameters.KEY, "").toString();
+   List<HTTPHeader> pHeaders = new LinkedList<HTTPHeader>();
+   FetchOptions fo = FetchOptions.Builder.withDeadline(60).doNotFollowRedirects();
+   byte[] pBytes = strData.getBytes();
+   UrlFetchService pUrlFetchService = getUrlFetchService();
+   HTTPResponse pResponse = pUrlFetchService.fetch(strUrl, HTTPMethod.POST, pBytes, pHeaders, fo);
+   String strResponse = new String(pResponse.getContent());
+   int nDivideResultValue = ((pResponse.getResponseCode() / 100) % 3);
+   //
+   //debug out
+   //debug(String.format("nDivideResultValue %d", nDivideResultValue));
+   debug(String.format("ResponseCode %s", pResponse.getResponseCode()));
+   String[] strAListResult = new String[]{ "IDD_OK", "IDD_ERROR", "IDD_INVALID_KEY" };
+
+   //for(HTTPHeader p: pResponse.getHeaders())
+   //   debug(p.getName() + "=" + p.getValue());
+   //
+   if(nDivideResultValue == 0)
+   {
+      for(HTTPHeader pHeader: pResponse.getHeaders())
+      {
+         boolean bExists = pHeader.getName().equalsIgnoreCase("Location");
+
+         if(bExists)
+         {
+            pResponse = pUrlFetchService.fetch(pHeader.getValue());
+            strResponse = new String(pResponse.getContent());
+            break;
+         }
+      }
+   }
+   else
+      throw new Exception(String.format("Erro: HTTP invalido código %d!", 
+      pResponse.getResponseCode()));
+   
+   //debug out
+   for(HTTPHeader p: pResponse.getHeaders())
+   {
+      if(p.getName().equalsIgnoreCase("X-Frame-Options"))
+         if(p.getValue().equalsIgnoreCase("DENY"))
+            throw new Exception("Erro: Google Script reportou acesso negado!");
+   }
+
+   //to debug out compare result
+   for(String p: strAListResult)
+      if(strResponse.startsWith(p))
+         debug("Result " + p);
+
+   if(pResponse.getResponseCode() == 200)
+   {
+      if(strResponse.startsWith("IDD_ERROR"))
+         throw new Exception("Erro: Script resultou em IDD_ERROR!");
+      else if(strResponse.startsWith("IDD_INVALID_KEY"))
+         throw new Exception("Erro: Script resultou em IDD_INVALID_KEY!");
+      else
+      {
+         debug("Script processado com sucesso!");
+         /* mark document already attached dont make again*/
+         getDocumentService().lockDocument(document).setField("DontAttachFileWhenRecused", true);
+      }
+   }         
+   else
+      throw new Exception(String.format("Erro: HTTP invalido código %d!!!",
+      pResponse.getResponseCode()));
+              
+}
+catch(Exception e)
+{
+   debug(e.getMessage());
+   throw e;
+}   
+
+

@@ -1,0 +1,242 @@
+/*
+*  Created by Wilson.Souza
+*  Copyright (c) 2014 Dedalus
+*  Supervised by Eduardo Bortoluzzi Jr
+*  
+*  Last update 7-23-2014 by wilson.souza
+*/
+try
+{   
+   /*************************************************************************************************/
+   class URLEncoder 
+   {
+      private String encode(String szData, String szReserved) 
+      {
+         StringBuffer pResult = new StringBuffer();
+         String szSpecialChars = " &+?/=%";
+
+         for (int i = 0; i < szData.length(); i++) 
+         {
+            char c = szData.charAt(i);
+
+            if (szSpecialChars.indexOf(c) >= 0) 
+            {
+               byte[] bytes = ("" + c).getBytes();
+               pResult.append("%");
+            
+               for (int j = 0; j < bytes.length; j++) 
+               {
+                  if (bytes[j] < 16) 
+                  {
+                     pResult.append("0");
+                  }
+                  pResult.append(Integer.toHexString(bytes[j]));
+               }
+            } 
+            else 
+            {
+               pResult.append(c);
+            }
+         }
+         return pResult.toString();
+      }
+   }
+   /*************************************************************************************************/
+   String szDocId = document.getId();
+   String szVersao = "1";
+   String szElaborador = document.getField("elaborador").toString();
+   String szAprovador = getPermissionService().getCurrentUser(); 
+   String szUrl = getParam("urlScript");
+   String szKey = "PLOJV6Yw2xmEyGiXml9YPvy3vNk99HHXXX7NjHWahE7wIeqrBtKoxOKcQEdFuN7";
+   String szDataAprovador = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+   String szState = document.getField("GetOldStateBefore_RunScript").toString();
+   //put security code identification here
+   String szSCI = getParam("SecurityCodeId");
+   /*************************************************************************************************/
+   //debug(String.format("Document Id %s", szDocId));
+   //debug(String.format("Elaborador Id %s", szElaborador));
+   //debug(String.format("Approver Id %s", szAprovador));
+   //debug(String.format("Approver date %s", szDataAprovador));
+   /*************************************************************************************************/
+   class HTTPResult
+   {
+      static final String SUCCESS = "IDD_OK";
+      static final String ERROR   = "IDD_ERROR";
+      static final String INVALIDKEY = "IDD_INVALID_KEY";
+      static final String DOCISNULL = "IDD_DOC_IS_NULL";
+      static final String FOOTEREXCEPTION = "IDD_FOOTER_EXCEPTION";
+      static final String INVALIDMAINDOCID = "IDD_INVALID_MAIN_DOCID";
+      static final String[] RESULTLIST = 
+      {
+         SUCCESS, 
+         ERROR, 
+         INVALIDKEY, 
+         DOCISNULL, 
+         FOOTEREXCEPTION,
+         INVALIDMAINDOCID
+      };
+   };
+   /*************************************************************************************************/
+   class DOCFormat
+   {
+      static final String ID = "DocID=";
+      static final String VERSION = "&Versao=";
+      static final String ELABORATOR = "&Elaborador=";
+      static final String APPROVER = "&Aprovador=";
+      static final String APPROVERDATE = "&DataAprovacao=";
+      static final String KEY = "&Key=";
+      static final String STATE = "&DocState=";
+      static final String MAIN_DOC_ID = "&MainDocId=";
+      static final String SECURITY_CODE_ID = "&SecurityCodeId=";
+   };
+   /*************************************************************************************************/
+   URLEncoder pEncoder = new URLEncoder();
+   Object[] pDocList = document.getAttachments().toArray();
+   boolean bSuccess = false;
+   int nSumDoc = 0;
+   int nErrorDoc = 0;
+   /*
+   * get user profile information
+   */
+   szElaborador = getContactService().getUserProfile(szElaborador).getName().getFullName().getValue();
+   szAprovador = getContactService().getUserProfile(szAprovador).getName().getFullName().getValue();
+   //   
+   for(Object pDoc: pDocList)
+   {
+      try
+      {
+         Attachment pAtt = (Attachment)pDoc;
+         String szFileID = pAtt.getFileId();
+         String szResourceID = pAtt.getResourceId();
+         String szID = DOCFormat.ID + pEncoder.encode(szFileID, "UTF-8").toString();
+         String szVer = DOCFormat.VERSION + pEncoder.encode(szVersao, "UTF-8").toString();
+         String szElaborator = DOCFormat.ELABORATOR + pEncoder.encode(szElaborador, "UTF-8").toString();
+         String szApprover = DOCFormat.APPROVER + pEncoder.encode(szAprovador, "UTF-8").toString();
+         String szApproverDate = DOCFormat.APPROVERDATE + pEncoder.encode(szDataAprovador, "UTF-8").toString();
+         String szKeyFmt = DOCFormat.KEY + pEncoder.encode(szKey, "UTF-8").toString();
+         String szDocState = DOCFormat.STATE + pEncoder.encode(szState, "UTF-8").toString();
+         String szMainDocumentId = DOCFormat.MAIN_DOC_ID + pEncoder.encode(szDocId, null).toString();
+         String szSecurityCodeId = DOCFormat.SECURITY_CODE_ID + pEncoder.encode(szSCI, null).toString();
+         /*
+         * mount parameters
+         */
+         String szData = szID + szVer + szElaborator + szApprover + szApproverDate + szKeyFmt + szDocState + szMainDocumentId + szSecurityCodeId;
+         //
+         //debug(szUrl);
+         //// to debug
+         //String[] pADataListToDebug = 
+         //{  szID, szVer, szElaborator, szApprover, szApproverDate, szKeyFmt, szDocState, szMainDocumentId, szSecurityCodeId };
+         ////
+         //for(String szOut: pADataListToDebug)
+         //   debug(szOut);
+
+         /*
+         * call google script
+         */
+         List<HTTPHeader> pHeaders = new LinkedList<HTTPHeader>();
+         FetchOptions fo = FetchOptions.Builder.withDeadline(60).doNotFollowRedirects();
+         byte[] pABytes = szData.getBytes();
+         UrlFetchService pUrlFetchService = getUrlFetchService();
+         HTTPResponse pResponse = pUrlFetchService.fetch(szUrl, HTTPMethod.POST, pABytes, pHeaders, fo);
+         String szResponse = new String(pResponse.getContent());
+         /*
+         * Search on header response code
+         */
+         int nDivideResultValue = ((pResponse.getResponseCode() / 0x64) % 0x3);
+         //
+         if(nDivideResultValue == 0)
+         {
+            for(HTTPHeader pHeader: pResponse.getHeaders())
+            {
+               boolean bExists = pHeader.getName().equalsIgnoreCase("Location");
+
+               if(bExists)
+               {
+                  pResponse = pUrlFetchService.fetch(pHeader.getValue());
+                  szResponse = new String(pResponse.getContent());
+                  break;
+               }
+            }
+         }
+         else
+            throw new Exception(String.format("Erro: HTTP invalido código %d!", pResponse.getResponseCode()));
+
+         //
+         //
+         String szResult = null;
+         //
+         for(String szFmt: HTTPResult.RESULTLIST)
+         {
+            if(szResponse.startsWith(szFmt))
+            {
+               szResult = szFmt;
+               break;
+            }
+         }                         
+         //
+         debug(String.format("HTTP response code %d", pResponse.getResponseCode()));
+         debug(String.format("HTTP response text %s", szResponse));
+         debug(String.format("Process is %s", szResponse.startsWith(HTTPResult.SUCCESS)? "OK": "not OK"));
+         debug(String.format("Response result %s", szResult));
+         /* 
+         * check response code
+         */
+         if(pResponse.getResponseCode() == 0xc8)
+         {
+            if(szResponse.startsWith(HTTPResult.SUCCESS))
+            {
+               bSuccess |= true;
+               nSumDoc++;
+            }              
+            else
+            {
+               bSuccess |= false;
+               nErrorDoc++;
+            }
+         }
+      }
+      catch(Exception pEx)
+      {
+         debug(pEx.getMessage());
+         nErrorDoc++;
+      }
+   }
+
+   /*
+   * show bSuccess variable result
+   */
+   //debug(String.format("bSuccess %d", bSuccess? 1: 0));
+
+   /*
+   * check result
+   */
+   if(pDocList.length > 0)
+   {
+      String szErrorMsg = String.format("Erro: %d documento%s não fo%s processado%s!",
+         nErrorDoc,
+         nErrorDoc > 1? "s": "",
+         nErrorDoc > 1? "ram": "i",
+         nErrorDoc > 1? "s": "");
+      String szSuccessMsg = String.format("(%d) documento%s processado%s com sucesso!", 
+         nSumDoc, 
+         pDocList.length > 1? "s": "", 
+         pDocList.length > 1? "s": "");
+
+      /*
+      * register
+      */
+      if(nErrorDoc > 0)
+         debug(szErrorMsg);
+
+      if(!bSuccess)
+         throw new Exception(szErrorMsg);
+      else
+         debug(szSuccessMsg);
+   }         
+}
+catch(Exception pEx)
+{
+   debug(String.format("Erro: classe %s menssagem %s!", pEx.getClass().getName(), pEx.getMessage()));
+   throw pEx;
+}  
+/* eof */

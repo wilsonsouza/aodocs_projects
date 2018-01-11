@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<?!= include('Stylesheet'); ?>
+<style>
+   select
+   {
+      height: 24px;
+      margin-bottom: 8px;
+      margin-top: 8px;
+      margin-right: 8px;
+   }
+   #dateIni
+   {
+      width: 150px;
+      margin-bottom: 8px;
+      margin-top: 8px;
+      height: 24px;
+      margin-right: 8px;
+   }
+
+   #dateEnd
+   {
+      width: 150px;
+      margin-bottom: 8px;
+      height: 24px;
+      margin-right: 8px;
+   }
+
+   #lbStartDate
+   {
+      margin-right: 4px;
+   }
+
+   #lbEndDate
+   {
+      margin-right: 16px;
+   }
+
+   #lbClass
+   {
+      margin-right: 36px;
+   }
+
+   #exportBtn
+   {
+      margin-top: 8px;
+      height: 24px;
+   }
+   #infoId
+   {
+   }
+   #errorId
+   {
+   }
+   #company_logo
+   {
+      margin-top:8px;
+      margin-bottom:8px;
+      height:auto;
+      image-resolution:from-image;
+      column-fill:balance;
+      flood-color:aquamarine;
+      height:auto;
+      background-color:blueviolet;
+   }
+   #logo_name
+   {
+      font-size:36px;
+      font-stretch:condensed;
+      color:white;
+      margin:8px;
+      margin-top:8px;
+      margin-bottom:4px;
+   }
+   #logo_description
+   {
+      font-size:16px;
+      font-stretch:condensed;
+      color:white;
+      margin-left:8px;
+      margin-top:1px;
+   }
+</style>
+<div id="company_logo" class="logo">
+   <p id="logo_name">WRR</p>
+   <p id="logo_description">Exportação Financeiro documentos</p>
+</div>
+<div id='infoId'>
+</div>
+<div id='errorId'>
+</div>
+<div id="classId">
+   <label id="lbClass">Classe:</label>
+   <!--
+   Aqui contém as informações das classes. Note que o valor contém o libraryId e o classId,
+   em formato JSON (que usa aspas duplas "). Então, no JavaScript, usei as aspas simples '
+   para definir a string.
+   -->
+   <select id="classId" name="classId" title="Selecione a classe desejada para exportar.">
+      <option value="{}">--- selecione abaixo ---</option>
+      <option value='{"libraryId":"OxTTvrB5RrM6nrziV7","classId":"OxTwCyLyj5kNfBcxRC"}'>Contas à pagar</option>
+   </select>
+</div>
+<div>
+   <label id="lbStartDate">Data inicial:</label>
+   <input id="dateIni" type="date" name="dateIni" title="Adicione a data inicíal para pesquisa.">
+</div>
+<div>
+   <label id="lbEndDate">Data final:</label>
+   <input id="dateEnd" type="date" name="dateEnd" title="Adicione a data final para pesquisa.">
+</div>
+<div>
+   <input id="exportBtn" type="button" class="glyphicon glyphicon-execute" value="Exportar..." title="Executa processo de exportação.">
+</div>
+<?!= include('JavaScript'); ?>

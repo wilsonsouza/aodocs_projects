@@ -1,0 +1,36 @@
+Contas a Pagar
+Departamento@Compras@Fiscal@Financeiro@Fim
+Coligada:CNPJ/CPF Fornecedor:Tipo de Documento:Data Emissão@Centro de Custo:Data de Vencimento@Código do Fornecedor:Numero OC@Numero Transação@Data de Pagamento
+Visible=Coligada@CNPJ/CPF Fornecedor@Tipo de Documento@Data Emissão@Centro de Custo@Data de Vencimento@Código do Fornecedor@Numero OC@Numero Transação@Data de Pagamento
+
+Faturamento
+Departamento@Fim
+Coligada:Contrato:Tipo de Documento:Mês Competência:Ano Competência@none
+Visible=Coligada@Contrato@Tipo de Documento@Mês Competência@Ano Competência
+
+RIC
+Contabilidade@RH@Fim
+Coligada:Serviço:Mercado:Cliente@Centro de Custo@Contrato de Venda
+Visible=Coligada@Serviço@Mercado@Cliente@Centro de Custo@Contrato de Venda
+
+
+Contratação
+ADMISSÃO@FIM
+Coligada:Contrato:Tipo de Documento:CPF@none
+
+Demissão
+HOMOLOGAÇÂO@FIM
+Coligada:Contrato:Tipo de Documento:CPF@none
+
+Requisição de pessoal
+RECRUTAMENTO@FIM
+Coligada:Contrato:Posição:Tipo de Documento@none
+e-mail:wrr_recursos_humanos_requisicao_de_pessoal@ao-docs.appspotmail.com
+
+MensaisDP
+Departamento@Fim
+Coligada:Contrato:Tipo de Documento:CPF:Mês Competência:Ano Competência@none
+
+Documentos de Afastamento Licenciamento de Ausencia
+DP@Fim
+Coligada:Contrato:Tipo de Documento:CPF:Data Inicio Ausência@none

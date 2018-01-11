@@ -1,0 +1,25 @@
+Title
+Coligada
+CNPJ/CPF Fornecedor
+Centro de Custo
+Código do Fornecedor
+Data Emissão
+Data de Pagamento
+Data de Vencimento
+Numero OC
+Numero Transação
+Last update
+Last update author
+
+Decode e-mail fields
+Coligada@CNPJ/CPF Fornecedor@Nome do Fornecedor@Material/Serviço@Tipo de Documento@Numero do Documento@Data Emissão@Centro de Custo@Valor@Data de Vencimento@Forma de Pagto@Código do Fornecedor@Numero OC
+
+Validity empty fields
+Compras@none@Fiscal@Financeiro@Fim
+Coligada:CNPJ/CPF Fornecedor:Nome do Fornecedor:Material/Serviço:Tipo de Documento:Numero do Documento:Data Emissão@
+none@none@Numero Transação@Data de Pagamento@none
+
+
+Fiscal@none
+Centro de Custo@none
+

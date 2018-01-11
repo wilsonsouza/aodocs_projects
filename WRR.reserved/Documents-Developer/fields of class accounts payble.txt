@@ -1,0 +1,9 @@
+Data de Vencimento Date
+Fornecedor no sistema boolean
+Código do Fornecedor string
+Dados Bancarios boolean
+Numero OC string
+Documento Inserido boolean
+Numero Transação string
+Pagamento Feito boolean
+Data de Pagamento date

@@ -1,0 +1,53 @@
+RIC logical properties (SummaryContractualInfo)
+Recrutamento
+Sessão
+Jornada Trabalho
+Sindicato
+Equipamentos TI
+Serviços Telecom
+Requisições de Compra
+Nova Filial
+Cadastro Cliente
+Criação Itens de Serviço
+Regras Fiscais
+
+Actions completed
+AccountsPayableExportableDocs OK
+AssignRelationsValuesOnProperties OK
+ProcessAccountsPayableDocBody OK
+FilterDocumentByActiveProperty OK
+VerifyQuantityOfRelations OK
+UpdatePropertyWhenChangeState
+
+Admission - Documentos de admissão
+relations=Coliga@Contrato@Tipo de documento@CPF@Requisiçao de pessoal
+fields=Coligada@Contrato@Tipo de Documento@CPF
+state=none@none@Cadastro@Arquivo@Fim
+properties=Revisão Departamento@Aceite Cadastro@Recebimento Arquivo
+
+Demission -  Documentos de demissão 
+relations=Coligada@Contrato@CPF@Tipo de documento
+fields=Coligada@Contrato@Tipo de Documento@CPF
+state=none@none@Cadastro@Arquivo@Fim
+properties=Revisão DP@Aceite Cadastro@Recebimento Arquivo
+
+Personal Request - Requisição de pessoal
+relations=Contrato@Posição@Tipo de documento@Coligada
+fields=Coligada@Contrato@Posição@Tipo de Documento
+state=none@none@Criar Colaborador
+propeties=Revisão Admissão
+
+Monthly DP - Mensais DP 
+relations=Coligada@Contrato@Tipo de documento@CPF
+fields=Coligada@Contrato@Tipo de Documento@CPF
+state=none@none@Fim
+properties=Revisão Departamento
+
+RemovalLicensingAbsence - Afastamento licenciamento ou ausência 
+relations=Coligada@Contrato@Tipo de Documento@CPF
+fields=Coligada@Contrato@Tipo de Documento@CPF
+state=none@none@Fim
+properties=Revisão Departamento
+
+Classes
+items=Documentos de admissão@Documentos de demissão@Requisição de pessoal@Afastamento licenciamento ou ausência@Mensais 

@@ -1,0 +1,441 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script>
+
+   /*
+
+   Exemplo de uso:
+
+   <h1>Inseridos:</h1>
+   <div id="info"></div>
+   <h1>Erros:</h1>
+   <div id="erro"></div>
+
+   <script>
+   var data = [<array com os dados>];
+
+   var libraryId = "<library ID>";
+   var securityCode = "<security code>";
+
+   var classId = "<class ID>";
+
+   var aodocs = new AODocs(libraryId, securityCode);
+   var documents = new IndexedDocumentList(aodocs, classId);
+
+   for(var i in data) {
+     var title = data[i][0];
+
+     var fields = [
+       {fieldName: "field 1", type: "STRING", values: [data[i][1]]},
+       {fieldName: "field 2", type: "STRING", values: [data[i][2]]}
+     ];
+
+     var id = documents.insertOrUpdateByTitle(title, fields, function(e) {
+       $("div#erro").append("<p>Erro com: " + title + ": " + JSON.stringify(e)</p>");
+     });
+
+     if(id) {
+       // atualiza a planilha
+       ...
+
+       $("div#info").append("<p>Inserido [" + id + "]: " + title + "</p>");
+     }
+   }
+
+   */
+
+   /*** CLASSE AODocs ***/
+   function AODocs( libraryId, securityCode )
+   {
+      this.libraryId = libraryId;
+      this.securityCode = securityCode;
+   }
+
+   AODocs.prototype.listDocuments = function ( classId, error, fields, filter )
+   {
+      if ( !fields )
+      {
+         fields = "documentList/title,documentList/id,pageToken";
+      } else
+      {
+         fields += ",pageToken";
+      }
+
+      if ( !filter )
+      {
+         filter = function ()
+         {
+            return true;
+         };
+      }
+
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/search/v1/libraries/", this.libraryId, "/list"].join( '' );
+
+      var params =
+      {
+         "classId": classId,
+         "securityCode": this.securityCode,
+         "pageSize": 100,
+         "fields": fields
+      };
+
+      documentList = [];
+
+      var pageToken = null;
+
+      do
+      {
+         $.ajax(
+         {
+            type: "POST",
+            url: uri + "?" + createParams( params ),
+            data: {},
+            success: function ( data )
+            {
+               if ( data.documentList && data.documentList.length > 0 )
+               {
+                  Array.prototype.push.apply( documentList, data.documentList.filter( filter ) );
+                  pageToken = data.pageToken;
+               }
+               else
+               {
+                  pageToken = null;
+               }
+            },
+            error: function ( e )
+            {
+               error( JSON.parse( e.responseText ) );
+               pageToken = null;
+            },
+            dataType: "json",
+            async: false
+         } );
+
+         params['pageToken'] = pageToken;
+         console.debug( 'pageToken is' + pageToken );
+
+      } while ( pageToken );
+
+      return documentList;
+   }
+
+   AODocs.prototype.searchDocuments = function ( classId, searchQuery, error )
+   {
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/search/v1/libraries/", this.libraryId, "/search"].join( '' );
+
+      var params =
+      {
+         "classId": classId,
+         "securityCode": this.securityCode,
+         "limit": 100,
+         "searchQuery": searchQuery
+      };
+
+      documentList = [];
+
+      var offset = 0;
+
+      do
+      {
+         params['offset'] = offset;
+
+         $.ajax(
+         {
+            type: "POST",
+            url: uri + "?" + createParams( params ),
+            data: {},
+            success: function ( data )
+            {
+               if ( data.documents && data.documents.length > 0 )
+               {
+                  Array.prototype.push.apply( documentList, data.documents );
+                  offset += data.documents.length;
+               }
+               else
+               {
+                  offset = -1;
+               }
+            },
+            error: function ( e )
+            {
+               error( JSON.parse( e.responseText ) );
+               offset = -1;
+            },
+            dataType: "json",
+            async: false
+         } );
+         console.debug( 'Offset: ' + offset );
+      } while ( offset > 0 );
+
+      return documentList;
+   }
+
+   AODocs.prototype.insert = function ( classId, title, fields, error )
+   {
+      var document =
+      {
+         "libraryId": this.libraryId,
+         "classId": classId,
+         "title": title
+      };
+
+      if ( fields != null )
+      {
+         document["fields"] = fields;
+      }
+
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/document/v1/"].join( '' );
+      var params =
+      {
+         "securityCode": this.securityCode,
+         "fields": "id"
+      };
+
+      var id = null;
+
+      $.ajax(
+      {
+         type: "PUT",
+         url: uri + "?" + createParams( params ),
+         data: JSON.stringify( document ),
+         contentType: "application/json; charset=utf-8",
+         success: function ( data )
+         {
+            id = data.id;
+         },
+         error: function ( e )
+         {
+            error( JSON.parse( e.responseText ) );
+         },
+         dataType: "json",
+         async: false
+      } );
+
+      return id;
+   }
+
+
+   AODocs.prototype.insertAttachFile = function ( classId, file, fields, error )
+   {
+      var document =
+      {
+         "libraryId": this.libraryId,
+         "classId": classId,
+         "title": file.name,
+         "attachments":
+         [{
+            link: file.url,
+            fileId: file.id
+         }],
+         "fields": fields
+      };
+
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/document/v1/"].join( '' );
+      var params =
+      {
+         "securityCode": this.securityCode
+      };
+
+      var id = null;
+
+      $.ajax(
+      {
+         type: "PUT",
+         url: uri + "?" + createParams( params ),
+         data: JSON.stringify( document ),
+         contentType: "application/json; charset=utf-8",
+         success: function ( data )
+         {
+            id = data.id;
+         },
+         error: function ( e )
+         {
+            error( JSON.parse( e.responseText ) );
+         },
+         dataType: "json",
+         async: false
+      } );
+
+      return id;
+   }
+
+
+   AODocs.prototype.update = function ( classId, documentId, title, fields, error )
+   {
+      var document =
+      {
+         "libraryId": this.libraryId,
+         "classId": classId,
+         "title": title
+      };
+
+      if ( title != null ) document["title"] = title;
+      if ( fields != null ) document["fields"] = fields;
+
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/document/v1/", documentId].join( '' );
+
+      var params =
+      {
+         "securityCode": this.securityCode,
+         "fields": "id"
+      };
+
+      var id = null;
+
+      $.ajax(
+      {
+         type: "POST",
+         url: uri + "?" + createParams( params ),
+         data: JSON.stringify( document ),
+         contentType: "application/json; charset=utf-8",
+         success: function ( data )
+         {
+            id = data.id;
+         },
+         error: function ( e )
+         {
+            error( JSON.parse( e.responseText ) );
+         },
+         dataType: "json",
+         async: false
+      } );
+
+      return id;
+   }
+
+   AODocs.prototype.delete = function ( documentId, error )
+   {
+      var uri = ["https://api-dot-ao-docs.appspot.com/_ah/api/document/v1/", documentId].join( '' );
+
+      var params =
+      {
+         "securityCode": this.securityCode,
+         "deleteMode": "PERMANENT"
+      };
+
+      var deleted = false;
+
+      $.ajax(
+      {
+         type: "DELETE",
+         url: uri + "?" + createParams( params ),
+         success: function ( data )
+         {
+            deleted = true;
+         },
+         error: function ( e )
+         {
+            error( JSON.parse( e.responseText ) );
+         },
+         async: false
+      } );
+
+      return deleted;
+   }
+
+
+   /*** CLASSE IndexedDocumentList ***/
+   function IndexedDocumentList( aodocs, classId )
+   {
+      this.aodocs = aodocs;
+      this.classId = classId;
+      this.indexedDocumentList = indexDocumentList( aodocs.listDocuments( classId ) );
+   }
+
+   IndexedDocumentList.prototype.insertOrUpdateByTitle = function ( title, fields, error )
+   {
+      var titleLower = title.toLocaleLowerCase();
+      if ( titleLower in this.indexedDocumentList )
+      {
+         var id = this.indexedDocumentList[titleLower].id;
+         return this.aodocs.update( this.classId, id, title, fields, error );
+      }
+      else
+      {
+         var id = this.aodocs.insert( this.classId, title, fields, error );
+         this.indexedDocumentList[titleLower] = { "id": id };
+         return id;
+      }
+   }
+
+   /** Funções de apoio **/
+
+   function createParams( obj )
+   {
+      var params = [];
+      var first = true;
+
+      for ( key in obj )
+      {
+         if ( !first )
+            params.push( '&' );
+         else
+            first = false;
+
+         params.push( encodeURIComponent( key ) );
+         params.push( '=' );
+         params.push( encodeURIComponent( obj[key] ) );
+      }
+
+      return params.join( '' );
+   }
+
+   function indexDocumentList( documentList )
+   {
+      var indexed = {};
+
+      for ( var i in documentList )
+      {
+         var title = null;
+         var documentTitle = documentList[i].title;
+
+         if ( -1 == documentTitle.indexOf( '|' ) )
+         {
+            title = documentTitle.trim();
+         }
+         else
+         {
+            title = documentList[i].title.split( '|', 2 )[0].trim();
+         }
+         /**/
+         documentList[i].title = title;
+         title = title.toLocaleLowerCase();
+         indexed[title] = documentList[i];
+      }
+
+      return indexed;
+   }
+
+   /**
+    * Retorna um filtro para o campo "modificationDate" do AODocs.
+    *
+    * @param from um objeto do tipo Date com a data inicial.
+    * @param to um objeto to tipo Date com a data final.
+    *
+    * @return um filtro para o campo 'modificationDate' do AODocs.
+    */
+   var getFilterByModificationDate = function ( from, to )
+   {
+      return function ( v )
+      {
+         var d = new Date( parseInt( v['modificationDate'] ) );
+         return ( d.getTime() >= from && d.getTime() <= to );
+      }
+   };
+
+   /*
+   * Return filter to "creationDate" of AODocs
+   *
+   * @param started obejct of kind date (begin date)
+   * @param end     object of kind date (finish date)
+   *
+   * @return filter to "creationDate" field of AODocs
+   */
+   var GetFilterByCreationDate = function ( started, end )
+   {
+      return function ( v )
+      {
+         var d = new Date( parseInt( v['creationDate'] ) );
+         return ( d.getTime() >= started && d.getTime() <= end );
+      }
+   };
+</script>

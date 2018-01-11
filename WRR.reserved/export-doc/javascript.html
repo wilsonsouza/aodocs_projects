@@ -1,0 +1,188 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<?!= include('aodocs'); ?>
+<script>
+   var g_di = null;
+   var g_de = null;
+   var g_hdocs = null;
+   var g_class = null;
+
+   $( function ()
+   {
+      $( '#exportBtn' ).click( function ()
+      {
+         if ( $( '#classId' ).val() == '{}' )
+         {
+            alert( 'Selecione uma classe de documento.' );
+            return;
+         }
+
+         enableInput( false );
+
+         notify( 'Aguarde...' );
+         notifyError( '' );
+
+         doExport();
+      } );
+   } )
+
+   /**
+    * Habilita ou desabilita os campos de entrada.
+    *
+    * @param enable true para habilitar, false para desabilitar.
+    */
+   function enableInput( enable )
+   {
+      $( '#classId' ).prop( 'disabled', !enable );
+      $( '#dateIni' ).prop( 'disabled', !enable );
+      $( '#dateEnd' ).prop( 'disabled', !enable );
+      $( '#exportBtn' ).prop( 'disabled', !enable );
+   }
+
+   /**
+    * Exibe um HTML de notificação.
+    *
+    * @param infoString o HTML para exibir.
+    */
+   function notify( infoString )
+   {
+      $( '#infoId' ).html( infoString );
+   }
+
+   /**
+    * Exibe um erro.
+    *
+    * @param notifyError o HTML para exibir.
+    */
+   function notifyError( errorString )
+   {
+      $( '#infoId' ).html( errorString );
+   }
+
+   /**
+    * Inicia o processo de exportação.
+    */
+   function doExport()
+   {
+      // Pega o código de segurança, e no sucesso, chama o runListDocuments.
+      notify( '<p>Aguarde...</p><p>Lendo a lista de documentos e aplicando o filtro.</p>' );
+      google.script.run
+        .withSuccessHandler( runListDocuments )
+        .withFailureHandler( onGetSecurityCodeFailure )
+        .getSecurityCode();
+   }
+
+   /**
+    * Cria a hora no timezone local.
+    *
+    * @param dateString uma represetação válida da data.
+    */
+   function createLocalTime( dateString )
+   {
+      var d = new Date( dateString );
+      d.setTime( d.getTime() + d.getTimezoneOffset() * 60 * 1000 );
+      return d;
+   }
+
+   /**
+    * Pega a lista de documentos com o filtro e cria a planilha.
+    *
+    * Se necessário modificar os campos do documento a retornar, modifique
+    * o 3º parâmetro da chamada ao aodocs.listDocuments.
+    *
+    * @param securityCode o código de segurança do AODocs.
+    */
+   function runListDocuments( securityCode )
+   {
+      console.debug( 'running list documents' );
+
+      var classInfo = JSON.parse( $( '#classId' ).val() );
+      var dateIni = createLocalTime( $( '#dateIni' ).val() );
+      var dateEnd = createLocalTime( $( '#dateEnd' ).val() );
+      dateEnd.setDate( dateEnd.getDate() + 1 );
+      /**/
+      g_di = dateIni;
+      g_de = dateEnd;
+
+      var aodocs = new AODocs( classInfo.libraryId, securityCode );
+      var documentList = aodocs.listDocuments(
+            classInfo.classId,
+            alert,
+            'documentList(title,fields(fieldName,values,type),creationDate)',
+            GetFilterByCreationDate( dateIni, dateEnd )
+      );
+      /**/
+      g_hdocs = aodocs;
+      g_class = classInfo;
+      /**/
+      console.debug( 'there are ' + documentList.length + ' documents' );
+
+      // Cria a planilha com as informações.
+      notify( '<p>Aguarde...</p><p>Criando a planilha.</p>' );
+      google.script.run
+        .withSuccessHandler( spreadsheetCreated )
+        .withFailureHandler( onCreateSpreadsheetFailure )
+        .createSpreadsheet( documentList );
+   }
+
+   /**
+    * Cria a notificação que a planilha foi criada.
+    *
+    * @param spreadsheetInfo informações da planilha criada.
+    */
+   function spreadsheetCreated( spreadsheetInfo )
+   {
+      var html = [];
+
+      html.push( '<p>Exportação realizada com sucesso.</p>' );
+      html.push( '<p>Planilha <a href="' + spreadsheetInfo.url + '">' + spreadsheetInfo.name + '</a> criada.</p>' );
+
+      notify( html.join( '\n' ) );
+      console.debug( 'Inserting document on aodocs...' );
+      /**/
+      /* create new aodocs document */
+      try
+      {
+         var szExportClassId = 'Oy2dIF08M0ttDOW0de';
+         var pDoc = new IndexedDocumentList( g_hdocs, szExportClassId );
+         var fields =
+            [
+               { fieldName: 'Data Inicial', type: 'DATE', values: [g_di] },
+               { fieldName: 'Data Final', type: 'DATE', values: [g_de] },
+               { fieldName: 'Selecione a classe', type: 'ListClasses', values: ["Contas a Pagar"] },
+               { fieldName: 'IsUser', type: 'STRING', values: [spreadsheetInfo.url] }
+            ];
+         pDoc.insertOrUpdateByTitle( spreadsheetInfo.name, fields, $( function ( e )
+         {
+            $( "div#erro" ).append( "<p>Erro com: " + title + ": " + JSON.stringify( e ) + "</p>" );
+         } ) );
+      }
+      catch ( e )
+      {
+         console.debug( 'Exception: ' + e.message );
+      }
+      /**/
+      enableInput( true );
+   }
+
+   /**
+    * Processamento do erro ao tentar pegar o código de segurança.
+    *
+    * @param e o erro na chamada à fução server-side.
+    */
+   function onGetSecurityCodeFailure( e )
+   {
+      notifyError( 'Não foi possível ler o código de segurança.\n' + e );
+      enableInput( true );
+   }
+
+   /**
+    * Processamento do erro ao tentar criar a planilha.
+    *
+    * @param e o erro na chamada à fução server-side.
+    */
+   function onCreateSpreadsheetFailure( e )
+   {
+      notifyError( 'Não foi possível criar a planilha.\n' + e );
+      enableInput( true );
+   }
+</script>
